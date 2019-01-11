@@ -144,6 +144,7 @@ Examples
 "Dad" ==> 1
 "aeiou" ==> 0
 "sillystring" ==> 7
+'''
 
 
 def count_consonants(text):
