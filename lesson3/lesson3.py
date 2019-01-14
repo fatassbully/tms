@@ -101,7 +101,7 @@ def toJadenCase(string):
     return
     
 
-assert toJadenCase(quote) == "How Can Mirrors Be Real If Our Eyes Aren't Real"
+assert toJadenCase("How can mirrors be real if our eyes aren't real") == "How Can Mirrors Be Real If Our Eyes Aren't Real"
 
 
 '''
