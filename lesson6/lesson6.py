@@ -4,6 +4,24 @@ Ex1
 Затем записать их произведение в файл output.txt.
 '''
 
+def zabratzapisat(a):
+    file1 = open("K:\Python_Courses\\tms2\\tms\lesson6\index1.txt", "r")
+    print(file1)
+    F = ''
+    for i in file1.read():
+        if len(F)!= a:
+            if i == " ":
+                pass
+            else:
+                F = F + i
+    return F
+print(zabratzapisat(5))
+Z = open("K:\Python_Courses\\tms2\\tms\lesson6\output.txt", "w")
+Z.write(zabratzapisat(5))
+print(Z)
+
+
+
 
 '''
 Ex2

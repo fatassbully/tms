@@ -1,8 +1,10 @@
 '''
 Ex1
-The first input array contains the correct answers to an exam, like ["a", "a", "b", "d"]. The second one is "answers" array and contains student's answers.
+The first input array contains the correct answers to an exam, like ["a", "a", "b", "d"]. The second one is "answers"
+array and contains student's answers.
 
-The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer(empty string).
+The two arrays are not empty and are the same length. Return the score for this array of answers, giving +4 for each
+correct answer, -1 for each incorrect answer, and +0 for each blank answer(empty string).
 
 If the score < 0, return 0.
 
@@ -14,8 +16,18 @@ checkExam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) → 0
 
 
 def check_exam(arr1,arr2):
-    # Your code here
-    return
+    score = 0
+    for i in range(len(arr1)):
+        if arr1[i] == arr2[i]:
+            score += 4
+        elif arr2[i] == "":
+            score += 0
+        else:
+            score -= 1
+    if score < 0:
+        score = 0
+    return score
+
 
 
 assert check_exam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) == 6
@@ -43,10 +55,14 @@ The middle character(s) of the word represented as a string.
 
 
 def get_middle(s):
-    # Your code here
-    return
-    
-    
+    b = len(s)
+    if b % 2 == 0:
+        d = s[int(int(b)/2)-1:int(int(b)/2)+1]
+    else:
+        d = s[int(b//2):int(b//2)+1]
+    return d
+
+
 assert get_middle("test") == "es"
 assert get_middle("testing") == "t"
 assert get_middle("middle") == "dd"
@@ -56,7 +72,8 @@ assert get_middle("of") == "of"
 
 '''
 Ex3
-In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+In this little assignment you are given a string of space separated numbers,
+and have to return the highest and lowest number.
 
 Example:
 
@@ -71,10 +88,16 @@ Output string must be two numbers separated by a single space, and highest numbe
 
 
 def high_and_low(numbers):
-    # Your code here
-    return
-    
-    
+    b = sorted(numbers.split())
+    findlist = []
+    for i in b:
+        c = int(i)
+        findlist.append(c)
+    Ma = max(findlist)
+    Mi = min(findlist)
+    return str(Ma) + ' ' + str(Mi)
+
+
 assert high_and_low("4 5 29 54 4 0 -214 542 -64 1 -3 6 -6") == "542 -214"
 assert high_and_low("1 2 -3 4 5") == "5 -3"
 
@@ -94,14 +117,19 @@ Example:
 Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
 Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 '''
-
-
+string = "How can mirrors be real if our eyes aren't real"
 def toJadenCase(string):
-    # Your code here
-    return
-    
+    a = string.split()
+    b = ""
+    c = len(string)
+    for i in a:
+        if i[0].islower():
+             b +=i[0].upper() + i[1:] + " "
+        else:
+            b += i + " "
+    return b[:c]
 
-assert toJadenCase("How can mirrors be real if our eyes aren't real") == "How Can Mirrors Be Real If Our Eyes Aren't Real"
+assert toJadenCase(string) == "How Can Mirrors Be Real If Our Eyes Aren't Real"
 
 
 '''
@@ -113,16 +141,15 @@ The binary number returned should be a string
 '''
 
 
-def add_binary(a,b):
-    #your code here
-    return
-    
-    
-assert add_binary(1,1) == "10"
-assert add_binary(0,1) == "1"
-assert add_binary(1,0) == "1"
-assert add_binary(2,2) == "100"
-assert add_binary(51,12) == "111111"
+def add_binary(a, b):
+    return str(bin(a + b))[2:]
+
+
+assert add_binary(1, 1) == "10"
+assert add_binary(0, 1) == "1"
+assert add_binary(1, 0) == "1"
+assert add_binary(2, 2) == "100"
+assert add_binary(51, 12) == "111111"
 
 
 '''
@@ -148,10 +175,24 @@ Examples
 
 
 def count_consonants(text):
-    # Your code here
-    return
-    
-    
+    goodlist = []
+    badlist = []
+    bastuff = ["a", "e", "i", "o", "u"]
+    for c in range(len(text)):
+        if text[c].isalpha():
+            if text[c] in bastuff:
+                badlist.append(text[c].lower())
+            elif text[c] != text[c]:
+                badlist.append(text[c].lower())
+            else:
+                goodlist.append(text[c].lower())
+        else:
+            pass
+    F = len(set(goodlist))
+    return F
+
+
+
 assert count_consonants('sillystring') == 7
 assert count_consonants('aeiou') == 0
 assert count_consonants('abcdefghijklmnopqrstuvwxyz') == 21
@@ -166,21 +207,28 @@ Return the resulting string.
 
 
 def fake_bin(x):
-    # Your code here
-    return
-    
-    
+    newstring = ""
+    for i in x:
+        if int(i) < 5:
+            newstring += "0"
+        else:
+            newstring += "1"
+    return newstring
+
+
 tests = [
-    # [expected, input]
-    ["01011110001100111", "45385593107843568"],
-    ["101000111101101", "509321967506747"],
-    ["011011110000101010000011011", "366058562030849490134388085"],
-    ["01111100", "15889923"],
-    ["100111001111", "800857237867"],
-]
+        # [expected, input]
+        ["01011110001100111", "45385593107843568"],
+        ["101000111101101", "509321967506747"],
+        ["011011110000101010000011011", "366058562030849490134388085"],
+        ["01111100", "15889923"],
+        ["100111001111", "800857237867"],
+        ]
 
 for exp, inp in tests:
     assert fake_bin(inp) == exp
+
+
 
 
 '''
@@ -199,11 +247,22 @@ arithmetic_sequence_elements(1, 2, 5) == "1, 3, 5, 7, 9"
 '''
 
 
-def arithmetic_sequence_elements(a, r, n):
-    #Your code here!:)
-    return
-    
-    
+def arithmetic_sequence_elements(start, difference, quantity):
+    newlist = [start]
+    for i in range(quantity-1):
+         if difference >=0:
+             start += difference
+             newlist.append(start)
+         else:
+             start += difference
+             newlist.append(start)
+    Finalstring = ""
+    for i in newlist:
+        Finalstring += str(i) + ", "
+    c = len(Finalstring)
+    return  Finalstring[:c-2]
+
+
 assert arithmetic_sequence_elements(1, 2, 5) == '1, 3, 5, 7, 9'
 assert arithmetic_sequence_elements(1, 0, 5) == '1, 1, 1, 1, 1'
 assert arithmetic_sequence_elements(1, -3, 10) == '1, -2, -5, -8, -11, -14, -17, -20, -23, -26'
@@ -211,7 +270,7 @@ assert arithmetic_sequence_elements(1, -3, 10) == '1, -2, -5, -8, -11, -14, -17,
 
 '''
 Ex9
-If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. 
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
 The sum of these multiples is 23.
 
 Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in.
@@ -221,10 +280,19 @@ Note: If the number is a multiple of both 3 and 5, only count it once.
 
 
 def solution(number):
-    # Your code here
-    return
-    
-    
+    newlist = [i for i in range(number)]
+    forsumming = []
+    for s in range(len(newlist)):
+        if newlist[s] % 3 and newlist[s] % 5 == 0:
+            forsumming.append(newlist[s])
+        elif newlist[s] % 3 == 0:
+            forsumming.append(newlist[s])
+        elif newlist[s] % 5 == 0:
+            forsumming.append(newlist[s])
+        else:
+            pass
+    return sum(forsumming)
+
 assert solution(10) == 23
 
 
@@ -247,11 +315,16 @@ Note: the result should be rounded down to the nearest integer.
 
 
 def predict_age(age_1, age_2, age_3, age_4, age_5, age_6, age_7, age_8):
-    # your code here
-    return
-    
-    
-assert predict_age(65,60,75,55,60,63,64,45) == 86
+    agelist = [age_1, age_2, age_3, age_4, age_5, age_6, age_7, age_8]
+    listforsum = []
+    for i in agelist:
+        b = i * i
+        listforsum.append(b)
+    c = sum(listforsum)
+    return int(c ** 0.5 / 2)
+
+
+assert predict_age(65, 60, 75, 55, 60, 63, 64, 45) == 86
 
 
 '''
@@ -266,10 +339,14 @@ Example
 
 
 def populate_dict(keys, default):
-    # your code here
-    return
-    
-    
+    newdefault = [default for i in range(len(keys))]
+    keys = sorted(keys)
+    newdict = zip(keys, newdefault)
+    newdict = dict(newdict)
+
+
+    return newdict
+
 assert populate_dict(["draft", "completed"], 0) == {"completed": 0, "draft": 0}
 assert populate_dict(["a", "b", "c"], None) == {"c": None, "b": None, "a": None}
 assert populate_dict([1, 2, 3, 4], "OK") == {1: "OK", 2: "OK", 3: "OK", 4: "OK"}
