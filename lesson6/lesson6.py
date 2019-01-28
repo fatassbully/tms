@@ -84,9 +84,30 @@ for i in wholelst:
 
 '''
 Ex4
-В файле input4.txt записаны в столбик целые числа. 
+В файле input4.txt записаны в столбик целые числа.
 Отсортировать их по возрастанию суммы цифр и записать в другой файл.
 '''
+F4 = open("K:\Python_Courses\Fromscratch\\tms\lesson6\index4.txt",'r')
+R4 = F4.read()
+R4 = R4.split()
+lstofsums = []
+for i in R4:
+    if i[0] == "-":
+        S = 0
+        for j in i[1:]:
+            j = int(j)
+            S += j
+    else:
+        S = 0
+        for j in i:
+            j = int(j)
+            S += j
+    lstofsums.append(S)
+
+SRT = (str(sorted(lstofsums))).strip("[]")
+print(SRT)
+FF = open("K:\Python_Courses\Fromscratch\\tms\lesson6\index4_final.txt","w")
+FF.write(SRT)
 
 
 '''
@@ -120,6 +141,12 @@ Ex7
 
 9 7 1
 '''
+N = 4432
+def obratno(a):
+    a = str(a)[::-1]
+    return " ".join(a)
+print(obratno(N))
+
 
 
 '''
