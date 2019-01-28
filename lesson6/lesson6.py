@@ -42,6 +42,44 @@ Ex3
 Иванов 45 бухгалтер
 Необходимо записать в текстовый файл сведения о сотрудниках, возраст которых меньше 40.
 '''
+F2 = open("K:\Python_Courses\Fromscratch\\tms\lesson6\index3.txt","r",encoding="UTF-8")
+R2 = F2.read()
+R2 = R2.split()
+wholelst = []
+lst = []
+
+#Создание листа из листов про каждого сотрудника
+for k in range(len(R2)//3):
+    if lst == []:
+        for i in R2[0:3]:
+            lst.append(i)
+        wholelst.append(lst)
+    elif lst != []:
+        lst = []
+        f = 3
+        for i in R2[f*k:f*k+3]:
+            lst.append(i)
+        wholelst.append(lst)
+    else:
+        pass
+#Отсеивание
+for i in wholelst:
+    if int(i[1])<40:
+        wholelst.remove(i)
+    else:pass
+Sotrudniki = open("K:\Python_Courses\Fromscratch\lesson6\index3_final.txt", "w")
+Finalstring = ""
+for i in wholelst:
+    # print(i)
+    str_ = ""
+    for j in i:
+        # print(j)
+        j = str(j)
+        str_ = (str_ + " " + j)
+    Finalstring = str_ + "\n"
+    #Не понимаю почему появились пробелы в начале каждой строки,
+    #Код ниже удаляет их при добавлении
+    Sotrudniki.writelines(Finalstring[1:])
 
 
 '''
