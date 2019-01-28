@@ -23,10 +23,17 @@ print(Z)
 
 
 
-'''
-Ex2
-В файле input2.txt записаны целые числа. Найти максимальное и минимальное число и записать в другой файл.
-'''
+"""Ex2
+В файле input2.txt записаны целые числа. Найти максимальное и минимальное число и записать в другой файл."""
+F1 = open("K:\Python_Courses\\tms2\\tms\lesson6\index2.txt")
+R = F1.read()
+R = R.split()
+Fmax = max(R)
+Fmin = min(R)
+Finalfile = open("K:\Python_Courses\\tms2\\tms\lesson6\index2_final.txt", "w")
+Thingtowrite = ("Maximal value is " + str(Fmax) + "\nMinimal value is " + str(Fmin))
+print(Thingtowrite)
+Finalfile.write(Thingtowrite)
 
 
 '''
