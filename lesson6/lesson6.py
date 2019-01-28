@@ -54,6 +54,16 @@ Ex5
 Ex6
 Дано натуральное число n. Выведите все числа от 1 до n. (использовать рекурсию)
 '''
+# n = input()
+n = 55
+def Vyvesty_vse_chisla(c):
+    if c<=1:
+        return 1
+    else:
+        print(c)
+        c = c-1
+    return Vyvesty_vse_chisla(c)
+print(Vyvesty_vse_chisla(n))
 
 
 '''
