@@ -11,6 +11,7 @@ sum_of_a_beach("gOfIshsunesunFiSh")             ==>  4
 sum_of_a_beach("cItYTowNcARShoW")               ==>  0
 """
 
+import re
 
 def sum_of_a_beach(beach):
     # your code
@@ -40,10 +41,17 @@ Output:
 
 
 def remove_duplicate_words(s):
-    # your code here
-    pass
+    a = s.split()
+    newlist = []
+    for i in a:
+        if i in newlist:
+            pass
+        else:
+            newlist.append(i)
+    f = " ".join(newlist)
+    return f
 
-
+# print(remove_duplicate_words("alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta"))
 print("Basic tests")
 assert remove_duplicate_words("alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta") \
        == "alpha beta gamma delta"
@@ -52,13 +60,20 @@ assert remove_duplicate_words("my cat is my cat fat") == "my cat is fat"
 
 """
 Ex3
-Implement String#digit? (in Java StringUtils.isDigit(String)), 
+Implement String#digit? (in Java StringUtils.isDigit(String)),
 which should return true if given object is a digit (0-9), false otherwise.
 """
 
 
 def is_digit(n):
-    # your code here
+    if n == "":
+        return False
+    else:
+        for i in n:
+            if i[0].isdigit():
+                return True
+            else:
+                return False
     pass
 
 
@@ -75,19 +90,26 @@ Ex4
 Write a function
 
 vowel_2_index
-that takes in a string and replaces all the vowels [a,e,i,o,u] with their respective positions within that string. 
-E.g: 
+that takes in a string and replaces all the vowels [a,e,i,o,u] with their respective positions within that string.
+E.g:
 
 vowel_2_index('this is my string') == 'th3s 6s my str15ng'
 vowel_2_index('Codewars is the best site in the world') == 'C2d4w6rs 10s th15 b18st s23t25 27n th32 w35rld'
 vowel_2_index('') == ''
 """
 
-
 def vowel_2_index(string):
-    # your code here
-    pass
-
+    wovellist = ["a","e","i","o","u"]
+    newstring = ''
+    num = 1
+    for i in string:
+        if i.lower() not in wovellist:
+            newstring += i
+            num += 1
+        else:
+            newstring += str(num)
+            num +=1
+    return newstring
 
 assert vowel_2_index('this is my string') == 'th3s 6s my str15ng'
 assert vowel_2_index('Codewars is the best site in the world') == 'C2d4w6rs 10s th15 b18st s23t25 27n th32 w35rld'
@@ -113,6 +135,7 @@ result = "90's c7rnh11l13 1516st19n, p24ckl28d b32tch36r yr m43ss46ng49r b53g g5
          "synth v536r538l l542st545cl548 sk552t554b556557rd f562563r d567ll570r t574575st " \
          "c580rnh584l586 Bl590591 B594ttl598 s601m603604t606cs."
 assert vowel_2_index(test_str) == result
+
 
 
 """
