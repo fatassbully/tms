@@ -13,14 +13,24 @@ sum_of_a_beach("cItYTowNcARShoW")               ==>  0
 
 import re
 
+
 def sum_of_a_beach(beach):
-    # your code
-    pass
+
+    B = ""
+    for i in beach:
+        i = i.lower()
+        B = B + i
+    keywords = ["sand", "water", "fish", "sun"]
+    c = 0
+    for i in keywords:
+        a = len(re.findall(i,B))
+        c = c + a
+    return c
 
 
 assert sum_of_a_beach("SanD") == 1
 assert sum_of_a_beach("sunshine") == 1
-assert sum_of_a_beach("sunsunsunsun") == 4
+assert sum_of_a_beach("SSSsunsunsunsun") == 4
 assert sum_of_a_beach("123FISH321") == 1
 
 
@@ -50,6 +60,7 @@ def remove_duplicate_words(s):
             newlist.append(i)
     f = " ".join(newlist)
     return f
+
 
 # print(remove_duplicate_words("alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta"))
 print("Basic tests")
@@ -98,7 +109,9 @@ vowel_2_index('Codewars is the best site in the world') == 'C2d4w6rs 10s th15 b1
 vowel_2_index('') == ''
 """
 
+
 def vowel_2_index(string):
+
     wovellist = ["a","e","i","o","u"]
     newstring = ''
     num = 1
@@ -110,6 +123,7 @@ def vowel_2_index(string):
             newstring += str(num)
             num +=1
     return newstring
+
 
 assert vowel_2_index('this is my string') == 'th3s 6s my str15ng'
 assert vowel_2_index('Codewars is the best site in the world') == 'C2d4w6rs 10s th15 b18st s23t25 27n th32 w35rld'
@@ -151,8 +165,13 @@ lowercaseCount("abcABC123!@€£#$%^&*()_-+=}{[]|\':;?/>.<,~"); ===> 3
 
 
 def lowercase_count(strng):
-    # Your code here
-    pass
+    f = 0
+    for i in strng:
+        if i.islower():
+            f += 1
+        else:
+            continue
+    return f
 
 
 print("lowercase_count")
@@ -175,10 +194,18 @@ underscore
 Length should be between 4 and 16 characters (both included).
 """
 
-
 def validate_usr(username):
-    # your code here
-    pass
+
+    if 4 <= len(username) <= 16:
+        if username == username.lower():
+            if len(re.findall(" ", username)) == 0:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
 
 
 assert validate_usr('asddsa') is True
@@ -195,21 +222,43 @@ assert validate_usr('asd43_34') is True
 
 """
 Ex7
-Your computer has forgotten how to speak ASCII! (or Unicode, whatever). 
-It can only communicate in binary, and it has something important to tell you. 
-Write a function which will receive a long string of binary code and convert it to a string. 
+Your computer has forgotten how to speak ASCII! (or Unicode, whatever).
+It can only communicate in binary, and it has something important to tell you.
+Write a function which will receive a long string of binary code and convert it to a string.
 Remember, in Python binary output starts with '0b'.
 
 As an example: binary_to_string('0b10000110b11000010b1110100') == 'Cat'
 
-Input may consist of upper and lower case letters and numbers, in binary form of course, as well as special symbols. 
+Input may consist of upper and lower case letters and numbers, in binary form of course, as well as special symbols.
 The input to your function will always be one string of binary.
 """
 
 
 def binary_to_string(binary):
-    # insert your code here
-    pass
+
+    # s = re.findall("(.+?(?=0b))", binary)
+    s = binary.split("0b")
+
+    newlist = []
+    for i in s[1:len(s)]:
+
+        i = "0b" + i
+        newlist.append(i)
+    newstring = ""
+    for i in newlist:
+
+        i = int(i,2)
+        i = str(chr(i))
+        newstring += i
+    print(newstring)
+    return newstring
+
+
+
+
+
+
+
 
 
 assert binary_to_string('0b10000110b11000010b1110100') == 'Cat'
@@ -222,11 +271,23 @@ result_str = 'Secret message 1'
 assert binary_to_string(test_str) == result_str
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 """
 Ex8
 Challenge:
 
-Given a two-dimensional array of integers, 
+Given a two-dimensional array of integers,
 return the flattened version of the array with all the integers in the sorted (ascending) order.
 
 Example:
@@ -236,8 +297,17 @@ Given [[3, 2, 1], [4, 6, 5], [], [9, 7, 8]], your function should return [1, 2, 
 
 
 def flatten_and_sort(array):
-    # your code here
-    return []
+    final = []
+    if array == []:
+        return []
+    else:
+        for i in array:
+            if i == []:
+                pass
+            elif type(i) == list:
+                final.extend(i)
+            else: final.append(i)
+    return sorted(final)
 
 
 print("should work for some simple example test cases")
