@@ -139,6 +139,13 @@
 # # assert Triangle(name='1', a=4, b=2, c=5) >= Triangle(name='2', a=4, b=5, c=1)
 #
 #
+"Базы данных"
+
+"""
+SQL
+
+
+"""
 
 import functools
 from math import pi
@@ -196,7 +203,7 @@ class Circle(Figure):
         super().__init__(name)
 
     def square(self):
-        return float((pi * self.radius) ** 2)
+        return pi * self.radius ** 2
 
     def perimeter(self):
         d = self.radius*2
@@ -212,9 +219,9 @@ class Rectangle(Figure):
         self.b = b
 
 
-R = Rectangle(a=4,b=4)
-print(R.square(), R.perimeter())
+R = Rectangle("R1", 4, 4)
+print(R.square(), R.perimeter(),R)
 C = Circle("c1", 5)
-print(C.perimeter())
+print(C.perimeter(),C)
 T = Triangle("T1", 5, 6, 7)
-print(T.perimeter(), T.square())
+print(T.perimeter(), T.square(),T)
