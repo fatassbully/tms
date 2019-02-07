@@ -148,20 +148,12 @@ from math import pi
 class Figure:
         def __init__(self, name=""):
             self.name = name
-            # self.a = a
-            # self.b = b
-            # self.c = c
 
         def square(self):
-            a = self.a
-            b = self.b
-            f = a*b
-            return f
+            return self.a * self.b
 
-        def perimeter(self, a, b):
-            a = self.a
-            b = self.b
-            return a*2 + b*2
+        def perimeter(self):
+            return self.a*2 + self.b*2
 
         def __name__(self):
             return self.name
@@ -178,45 +170,48 @@ class Figure:
 
 class Triangle(Figure):
 
-    def __init__(self, name="", a=0, b=0, c=0):
+    def __init__(self, a=0, b=0, c=0):
         super().__init__()
+        self.a = a
+        self.b = b
+        self.c = c
 
-
-
-    def square(self, a, b, c):
-        s = (a+b+c)/2
-        p = s*(s-a)*(s-b)*(s-c)
+    def square(self):
+        s = (self.a + self.b + self.c)/2
+        p = s*(s-self.a)*(s-self.b)*(s-self.c)
         f = p**0.5
         return f
 
-    def perimeter(self, a=0, b=0, c=0):
-        return a+b+c
+    def perimeter(self):
+        return self.a + self.b + self.c
 
 
 class Circle(Figure):
 
-    def __init__(self, name="", r=0):
+    def __init__(self, r=0):
         self.radius = r
-        self.name = name
+        super(Circle, self).__init__()
 
+    def square(self):
+        return float((pi * self.radius) ** 2)
 
-    def square(self, r):
-        return float((pi * r) ** 2)
-
-    def perimeter(self, r):
-        d = r*2
+    def perimeter(self):
+        d = self.radius*2
         C = pi*d
         return C
 
 
 class Rectangle(Figure):
 
-    def __init__(self, name="", a=0, b=0):
-        # super().__init__(name, a, b, c)
+    def __init__(self, a=0, b=0):
+        super(Rectangle, self).__init__()
         self.a = a
         self.b = b
-        # self.c = c
-        self.name = name
 
-R = Rectangle("R1",a=4,b=4)
-print(R.square())
+
+R = Rectangle(a=4,b=4)
+print(R.square(), R.perimeter())
+C = Circle("c1", 5)
+print(C.perimeter())
+T = Triangle(5, 6, 7)
+print(T.perimeter(), T.square())
