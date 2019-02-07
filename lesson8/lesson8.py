@@ -158,8 +158,11 @@ class Figure:
         def __name__(self):
             return self.name
 
+        # def __str__(self):
+        #     return f'{self.__class__.__name__}:"{self.__name__}"'
+
         def __str__(self):
-            return f'{self.__class__.__name__}:"{self.__name__}"'
+            return "{}:\"{}\"".format(self.__class__.__name__, self.name)
 
         def __eq__(self, other):
             return self.square == other.square
@@ -170,8 +173,8 @@ class Figure:
 
 class Triangle(Figure):
 
-    def __init__(self, a=0, b=0, c=0):
-        super().__init__()
+    def __init__(self,name="", a=0, b=0, c=0):
+        super().__init__(name)
         self.a = a
         self.b = b
         self.c = c
@@ -188,9 +191,9 @@ class Triangle(Figure):
 
 class Circle(Figure):
 
-    def __init__(self, r=0):
+    def __init__(self,name="", r=0):
         self.radius = r
-        super(Circle, self).__init__()
+        super().__init__(name)
 
     def square(self):
         return float((pi * self.radius) ** 2)
@@ -203,8 +206,8 @@ class Circle(Figure):
 
 class Rectangle(Figure):
 
-    def __init__(self, a=0, b=0):
-        super(Rectangle, self).__init__()
+    def __init__(self, name="", a=0, b=0):
+        super().__init__(name)
         self.a = a
         self.b = b
 
@@ -213,5 +216,5 @@ R = Rectangle(a=4,b=4)
 print(R.square(), R.perimeter())
 C = Circle("c1", 5)
 print(C.perimeter())
-T = Triangle(5, 6, 7)
+T = Triangle("T1", 5, 6, 7)
 print(T.perimeter(), T.square())
